@@ -53,7 +53,7 @@ class HealthWarningTest < ActiveSupport::TestCase
     valid_links = %w[image.jpg different.jpeg anothersomething.png lastone.gif]
     valid_links.each do |single_address|
       @new_warning.link = single_address
-      assert @user.valid?
+      assert @new_warning.valid?
     end 
   end 
 
