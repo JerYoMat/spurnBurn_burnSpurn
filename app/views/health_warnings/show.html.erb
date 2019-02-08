@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @health_warning.name %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @health_warning.link %>
+</p>
+
+<%= link_to 'Edit', edit_health_warning_path(@health_warning) %> |
+<%= link_to 'Back', health_warnings_path %>

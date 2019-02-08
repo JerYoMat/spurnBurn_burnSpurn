@@ -1,8 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :ratings 
-    has_many :side_effects, through: :ratings 
-    has_many :side_effects 
+    has_many :health_warnings, through: :ratings 
+    has_many :health_warnings 
     EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates_presence_of :name, :email
     validates :name, length: {maximum: 255}
