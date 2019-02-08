@@ -12,6 +12,7 @@ gem 'jbuilder',     '2.7.0'
 gem 'bootstrap'
 gem 'bcrypt'
 gem 'dotenv-rails'
+gem 'pry'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
