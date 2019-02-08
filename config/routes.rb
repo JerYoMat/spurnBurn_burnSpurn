@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  get '/login' 'sessions#new'
-  post '/login' 'sessions#create'
-  delete '/logout' 'sessions#destroy'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to:'sessions#destroy'
   resources :side_effects
   resources :users
   resources :products, only: [:index, :show]
