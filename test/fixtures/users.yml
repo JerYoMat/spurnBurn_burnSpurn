@@ -1,11 +1,27 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+smokey_steve:
+  id: 1
+  name: Smokey Steve
+  email: steve@smokey.com
+  password_digest: <%=BCrypt::Password.create('password') %>
+  smoking_status: regular  
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+kyle_the_prude:
+  id: 2
+  name: Kyle the Prude 
+  email: kyle@prude.com
+  password_digest: <%=BCrypt::Password.create('password') %>
+  smoking_status: never
+
+peter_pan:
+  id: 3
+  name: Peter Pan
+  email: peter@hegrewup.com
+  password_digest: <%= BCrypt::Password.create('password') %>
+  smoking_status: former 
+
+martin_has_a_vice:
+  id: 4 
+  name: Martin 
+  email: martin@knowsitbut.yolo
+  password_digest: <%= BCrypt::Password.create('password') %>
+  smoking_status: occasional
