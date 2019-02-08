@@ -1,9 +1,12 @@
 require 'test_helper'
-
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:smokey_steve)
+    @new_user = {name: "test user", email: "tango@test.com", password: "password", password_confirmation: "password", smoking_status: 'occasional'}
   end
+  teardown do 
+    Rails.cache.clear
+  end 
 
   test "should get index" do
     get users_url
@@ -14,12 +17,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get new_user_url
     assert_response :success
   end
-
+  
   test "should create user" do
     assert_difference('User.count') do
-      post users_url, params: { user: {  } }
+      post users_url, params: { user: {name: @new_user[:name],
+                                       email: @new_user[:email],
+                                       password: @new_user[:password],
+                                       password_confirmation: @new_user[:password_confirmation],
+                                       smoking_status: @new_user[:smoking_status]  } }
     end
-
     assert_redirected_to user_url(User.last)
   end
 
@@ -34,7 +40,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: {  } }
+    patch user_url(@user), params: {user: {name: @new_user[:name],
+                                            email: @new_user[:email],
+                                            password: @new_user[:password],
+                                            password_confirmation: @new_user[:password_confirmation],
+                                            smoking_status: @new_user[:smoking_status]  } }
     assert_redirected_to user_url(@user)
   end
 
