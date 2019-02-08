@@ -52,14 +52,16 @@ class HealthWarningTest < ActiveSupport::TestCase
   test 'valid image filetypes are accepted' do 
     valid_links = %w[image.jpg different.jpeg anothersomething.png lastone.gif]
     valid_links.each do |single_address|
-      assert_not_nil( /\S+\.((jpg)||(png)||(gif)||(jpeg))$/.match(single_address), "valid file type #{single_address} should pass" ) 
+      @new_warning.link = single_address
+      assert @user.valid?
     end 
   end 
 
   test 'invalid image filetypes are accepted' do 
     invalid_links = %w[image.abc different.js anothersomething.mal lastone.no]
     invalid_links.each do |single_address|
-      assert_nil( /\S+\.((jpg)||(png)||(gif)||(jpeg))$/.match(single_address), "invalid file type #{single_address} should not pass" ) 
+      @new_warning.link = single_address
+      assert_not @new_warning.valid?
     end 
   end 
 
