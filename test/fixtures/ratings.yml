@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  score: 1.5
-
-two:
-  score: 1.5
+gnarly_foot_rating:
+  id: 1
+  score: 0
+  user_id: 1
+  health_warning_id: 1

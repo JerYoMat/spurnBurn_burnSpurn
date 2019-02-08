@@ -2,7 +2,7 @@
 
 cigs:
   id: 1
-  name: MyString
+  name: Cigarettes
   num_active_users: 1
-  logo_path: MyString
+  logo_path: MyString.png
 
