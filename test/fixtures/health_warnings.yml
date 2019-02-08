@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  link: MyString
+gnarly_foot:
+  id: 1
+  name: Gnarly Foot 
+  link: /app/assets/images/health_warnings/gnarly_foot.png
+  product_id: 1
+  user_id: 1
 
-two:
-  name: MyString
-  link: MyString
+nasty_tongue:
+  id: 2
+  name: Nasty Tongue
+  link: /app/assets/images/health_warnings/nasty_tongue.png
+  product_id: 1
+  user_id: 2
