@@ -3,7 +3,7 @@ class CreateRatings < ActiveRecord::Migration[5.1]
     create_table :ratings do |t|
       t.float :score
       t.belongs_to :user 
-      t.belongs_to :side_effect
+      t.belongs_to :health_warning
       t.timestamps
     end
   end

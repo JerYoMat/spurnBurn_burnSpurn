@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190208004905) do
+ActiveRecord::Schema.define(version: 20190208014425) do
+
+  create_table "health_warnings", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.integer "product_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_health_warnings_on_product_id"
+    t.index ["user_id"], name: "index_health_warnings_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -23,23 +34,11 @@ ActiveRecord::Schema.define(version: 20190208004905) do
   create_table "ratings", force: :cascade do |t|
     t.float "score"
     t.integer "user_id"
-    t.integer "side_effect_id"
+    t.integer "health_warning_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["side_effect_id"], name: "index_ratings_on_side_effect_id"
+    t.index ["health_warning_id"], name: "index_ratings_on_health_warning_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
-
-  create_table "side_effects", force: :cascade do |t|
-    t.string "name"
-    t.string "link"
-    t.integer "product_id"
-    t.integer "user_id"
-    t.boolean "validated"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_side_effects_on_product_id"
-    t.index ["user_id"], name: "index_side_effects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

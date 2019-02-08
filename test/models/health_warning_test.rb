@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SideEffectTest < ActiveSupport::TestCase
+class HealthWarningTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
