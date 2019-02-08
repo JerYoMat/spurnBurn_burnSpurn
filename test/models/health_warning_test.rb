@@ -5,7 +5,7 @@ class HealthWarningTest < ActiveSupport::TestCase
     @health_warning = health_warnings(:gnarly_foot)    
     @user = users(:kyle_the_prude)
     @template = health_warnings(:nasty_tongue)
-    @new_warning = HealthWarning.new(name: @template.name, link:"abb/"+ @template.link, user_id: @template.user_id, product_id: @template.product_id)
+    @new_warning = HealthWarning.new(name: "new Name", link:"abb/"+ @template.link, user_id: @template.user_id, product_id: @template.product_id)
   end 
 
   teardown do 
