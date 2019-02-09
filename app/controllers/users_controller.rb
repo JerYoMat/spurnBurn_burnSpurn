@@ -77,7 +77,5 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :smoking_status)
     end
 
-    def if_unauthorized_redirect_to(desired_path)
-      redirect_to desired_path unless owning_user?
-    end 
+  
 end
