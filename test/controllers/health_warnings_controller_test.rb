@@ -7,6 +7,10 @@ class HealthWarningsControllerTest < ActionDispatch::IntegrationTest
     @other_user = users(:kyle_the_prude)
   end
 
+  teardown do 
+    Rails.cache.clear
+  end 
+
   test "should get index" do
     get health_warnings_url
     assert_response :success
@@ -19,15 +23,16 @@ class HealthWarningsControllerTest < ActionDispatch::IntegrationTest
 
   test "logged in user can create" do
     log_in_as_t(@user)
+    current_user 
     assert_difference('HealthWarning.count') do
-      post health_warnings_url, params: { health_warning: { link: "valid.jpg", name: "new_name" } }
+      post health_warnings_url, params: { health_warning: { link: "valid.jpg", name: "new_name", product_id: 1 } }
     end
     assert_redirected_to health_warning_url(HealthWarning.last)
   end
 
-  test 'unknown user cannot create' do 
+  test 'unknown user cannot create' do  
     assert_no_difference('HealthWarning.count') do
-      post health_warnings_url, params: { health_warning: { link: "valid.jpg", name: "new_name" } }
+      post health_warnings_url, params: { health_warning: { link: "valid.jpg", name: "new_name", product_id: 1 } }
     end
     assert_redirected_to root_path
   end 
