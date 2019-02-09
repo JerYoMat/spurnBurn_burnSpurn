@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Credits
+ID 44997924 © Leremy | Dreamstime.com
+ID 107463728 © Cherstva | Dreamstime.com
+ID 135520527 © Anatolii Riabokon | Dreamstime.com
