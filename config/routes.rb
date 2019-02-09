@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete '/logout', to:'sessions#destroy'
   resources :health_warnings
   resources :users
-  resources :products, only: [:index, :show]
+  resources :products, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
