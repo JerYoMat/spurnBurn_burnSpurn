@@ -34,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show user to owning user" do
-    log_in_as(@user)
+    log_in_as_t(@user)
     get user_url(@user)
     assert_response :success
   end
@@ -45,7 +45,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end 
 
   test "should get edit for owning user" do
-    log_in_as(@user)
+    log_in_as_t(@user)
     get edit_user_url(@user)
     assert_response :success
   end
@@ -56,7 +56,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update owning user" do
-    log_in_as(@user)
+    log_in_as_t(@user)
     patch user_url(@user), params: {user: {name: @user.name,
                                             email: @user.email,
                                             smoking_status: 'former'  } }
@@ -72,9 +72,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy user" do
-    log_in_as(@user)
-    session[:user_id] = @user.id
-    @current_user = @user  
+    log_in_as_t(@user)
+    current_user
     assert_difference('User.count', -1) do
       delete user_url(@user)
     end
