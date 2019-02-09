@@ -17,9 +17,9 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   
 
   test 'session cleared after logging out' do
-  log_in_as_t(@user)
-  delete logout_path 
-  assert session[:user_id] == nil
+    log_in_as_t(@user)
+    delete logout_path 
+    assert session[:user_id] == nil
   end 
 
   test 'after logging out user goes to root' do 
