@@ -38,15 +38,10 @@ class HealthWarningsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "owning user can edit" do
-    log_in_as_t(@health_warning.user)
     get edit_health_warning_url(@health_warning)
     assert_response :success
   end
-  test "different user cannot edit" do
-    log_in_as_t(@other_user)
-    get edit_health_warning_url(@health_warning)
-    assert_redirected_to root_path
-  end
+ 
 
   test "owner can update health_warning" do
     log_in_as_t(@health_warning.user)
