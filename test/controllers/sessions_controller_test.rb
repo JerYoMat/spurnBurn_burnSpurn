@@ -14,6 +14,13 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end 
 
+  test 'user is redirected to login with wrong creds' do 
+    get login_path
+    post login_path, params: {session: {email: @user.email,
+      password: 'not password' }}
+    assert_template 'new'
+  end 
+
   
 
   test 'session cleared after logging out' do
