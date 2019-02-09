@@ -1,5 +1,7 @@
 class HealthWarningsController < ApplicationController
   before_action :set_health_warning, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [ :update, :destroy]
+
 
   # GET /health_warnings
   # GET /health_warnings.json
@@ -19,27 +21,30 @@ class HealthWarningsController < ApplicationController
 
   # GET /health_warnings/1/edit
   def edit
+    
   end
 
   # POST /health_warnings
   # POST /health_warnings.json
   def create
-    @health_warning = HealthWarning.new(health_warning_params)
-
-    respond_to do |format|
-      if @health_warning.save
-        format.html { redirect_to @health_warning, notice: 'Health warning was successfully created.' }
-        format.json { render :show, status: :created, location: @health_warning }
-      else
-        format.html { render :new }
-        format.json { render json: @health_warning.errors, status: :unprocessable_entity }
-      end
+    if current_user
+  @user = User.find(session[:user_id])
+  @health_warning = current_user.health_warnings.build(health_warning_params)
+      
+        if @health_warning.save
+           redirect_to @health_warning
+        else
+          render :new 
+      end 
+    else  
+      redirect_to root_path 
+    end 
     end
-  end
 
   # PATCH/PUT /health_warnings/1
   # PATCH/PUT /health_warnings/1.json
   def update
+    if @health_warning.user == current_user
     respond_to do |format|
       if @health_warning.update(health_warning_params)
         format.html { redirect_to @health_warning, notice: 'Health warning was successfully updated.' }
@@ -48,17 +53,24 @@ class HealthWarningsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @health_warning.errors, status: :unprocessable_entity }
       end
+    end 
+    else 
+      redirect_to health_warnings_url
     end
   end
 
   # DELETE /health_warnings/1
   # DELETE /health_warnings/1.json
   def destroy
+    if @health_warning.user == current_user 
     @health_warning.destroy
     respond_to do |format|
       format.html { redirect_to health_warnings_url, notice: 'Health warning was successfully destroyed.' }
       format.json { head :no_content }
     end
+  else 
+    redirect_to root_path
+  end 
   end
 
   private
@@ -69,6 +81,6 @@ class HealthWarningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def health_warning_params
-      params.require(:health_warning).permit(:name, :link)
+      params.require(:health_warning).permit(:name, :link, :user_id, :product_id)
     end
 end
