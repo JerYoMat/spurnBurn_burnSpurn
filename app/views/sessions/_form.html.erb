@@ -1,6 +1,22 @@
-<%= bootstrap_form_with(model: @user, local: true) do |f| %>
-  <%= f.email_field :email %>
-  <%= f.password_field :password %>
-  <%= f.submit "Log In" %>
-<% end %>
- 
+
+  <div class="col-4">
+  <br>
+    <div class="card">
+    <div class="card-body">
+    <p>Please log in below</p>
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <br>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
+    </div>
+  </div>
+  
