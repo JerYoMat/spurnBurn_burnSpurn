@@ -60,7 +60,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_url(@user), params: {user: {name: @user.name,
                                             email: @user.email,
                                             smoking_status: 'former'  } }
-    assert @user.smoking_status == 'former' 
+    assert User.find(@user.id).smoking_status == 'former' 
   end
 
   test "should not update with other user" do
@@ -73,6 +73,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy user" do
     log_in_as(@user)
+    session[:user_id] = @user.id
+    @current_user = @user  
     assert_difference('User.count', -1) do
       delete user_url(@user)
     end
