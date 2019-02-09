@@ -1,7 +1,7 @@
 require 'pry'
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /users
   # GET /users.json
   def index
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if_unauthorized_redirect_to(root_path)
   end
 
   # GET /users/new
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if_unauthorized_redirect_to(root_path)
   end
 
   # POST /users
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -55,10 +57,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    if owning_user?
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -73,4 +77,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :smoking_status)
     end
 
+    def if_unauthorized_redirect_to(desired_path)
+      redirect_to desired_path unless owning_user?
+    end 
 end
