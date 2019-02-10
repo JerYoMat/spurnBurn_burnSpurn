@@ -14,7 +14,7 @@ gem 'dotenv-rails'
 gem 'pry'
 gem 'font-awesome-rails'
 gem 'bootstrap-social-rails'
-gem "bootstrap_form", ">= 4.1.0"
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
