@@ -1,6 +1,27 @@
-<%= form_with(model: user, local: true) do |form| %>
-  
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="col-sm-4">
+  <div class="card">
+      <div class="card-body">
+     <%= form_for(@user) do |f|%>
+       <%= render '/shared/error_messages', object: f.object%>
+       <%= f.label :name %>
+       <%= f.text_field :name, class: 'form-control' %><br>
+
+       <%= f.label :email %>
+       <%= f.email_field :email, class: 'form-control' %><br>
+       
+       <%= f.label :password %>
+       <%= f.password_field :password, class: 'form-control' %><br>
+
+       <%= f.label :password_confirmation, "Confirmation" %>
+       <%= f.password_field :password_confirmation, class: 'form-control' %><br>
+
+      <div class='form-group mb-3'>
+      <%= f.label :smoking_status%>
+      <%= f.select :smoking_status, options_for_select([["Select One", ""], 'regular', 'occasional', 'former', 'never', 'none of your business']), class: 'form-control' %>
+      </div>
+       <%= f.submit class: "btn btn-primary" %>
+     <% end %>
+     </div>
+     </div>
   </div>
-<% end %>

@@ -2,21 +2,29 @@
   <div class="col-4">
   <br>
     <div class="card">
-    <div class="card-body">
-    <p>Please log in below</p>
-    <%= form_for(:session, url: login_path) do |f| %>
+      <div class="card-body">
+        <h5 class="card-title text-center mb-4 mt-1">Please sign in:</h4>
+      <%= form_for(:session, url: login_path) do |f| %>
+       
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-envelope"></i></span>   
+        </div> <%= f.email_field :email, class: 'form-control', placeholder: "Email"%>
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-lock"></i></span>   
+        </div> <%= f.password_field :password, class: 'form-control', placeholder: "Password"%>
+      </div>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
+      <% end %>
+      </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-      <br>
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-    </div>
+      <p class="text-center">New user? <%= link_to "Sign up now!", signup_path %></p>
+      </div>
     </div>
   </div>
   
