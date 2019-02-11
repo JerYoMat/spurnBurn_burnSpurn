@@ -1,30 +1,32 @@
-<div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="tip_form">
-        <%= render 'shared/tip_form' %>
-      </section>
-    </aside>
-    <div class="col-md-8">
-      <h3>Your Tips</h3>
-      <div id="info"></div>
-    </div>
+
+  <div class="card-columns" id='info'></div>
+  
   </div>
   <script>
  $(document).ready(function() {
 
-$.getJSON('/tips/user_tips',limit=5, processData);
-function processData(data) {
+$.getJSON('/tips/user_tips',limit=5, userTipData);
+function userTipData(data) {
   // create variable with empty string
-  var infoHTML='';
-  //loop through each object in the JSON data
+  
+  var tipHTML='';
+
   $.each(data,function(tip, tipInfo) {
-  infoHTML+='<p>Title: ' + tipInfo.title + '</p>';
-  }); // end of each()
+    tipHTML+="<div class='card' style='width: 18rem;'>" 
+    tipHTML+="<div class='card-body'>"
+    tipHTML+="<h5 class='card-title'>" +tipInfo.title +" </h5>"
+
+    tipHTML+="<p class='card-text'>"+tipInfo.description+"</p>"
+    tipHTML+="<a href='#' class='btn btn-primary'>Go somewhere</a>"
+    tipHTML+="</div><div class='card-footer text-muted'>2 days ago</div></div>"
+
+
+   
+  }); // end of each
+
+
   // add finished HTML to page
-  $('#info').html(infoHTML);
+  $('#info').html(tipHTML);
 } // end processData
 return false;
 
