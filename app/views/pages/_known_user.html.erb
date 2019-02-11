@@ -9,6 +9,25 @@
     </aside>
     <div class="col-md-8">
       <h3>Your Tips</h3>
-     
+      <div id="info"></div>
     </div>
   </div>
+  <script>
+ $(document).ready(function() {
+
+$.getJSON('/tips/user_tips',limit=5, processData);
+function processData(data) {
+  // create variable with empty string
+  var infoHTML='';
+  //loop through each object in the JSON data
+  $.each(data,function(tip, tipInfo) {
+  infoHTML+='<p>Title: ' + tipInfo.title + '</p>';
+  }); // end of each()
+  // add finished HTML to page
+  $('#info').html(infoHTML);
+} // end processData
+return false;
+
+}); 
+
+</script>

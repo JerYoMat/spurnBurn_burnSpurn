@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#destroy'
   get    '/signup',  to: 'users#new'
+  get '/tips/user_tips', to: 'tips#user_tips'
 
   resources :users
   resources :tips, only: [:show, :create, :destroy]

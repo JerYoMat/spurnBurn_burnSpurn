@@ -4,10 +4,13 @@ class TipsController < ApplicationController
   #Nested Routes
   def index
     @tips = Tip.where(:lesson_id => params[:lesson_id])
-    @lesson = Lesson.find(params[:lesson_id])
     
   end 
 
+  def user_tips
+    @tips = current_user.tips
+    render json: @tips, status: 200
+  end 
 
   def new 
     if logged_in?
@@ -23,6 +26,9 @@ class TipsController < ApplicationController
   end 
 #End Nested Routes 
 
+ def show 
+  @tip = Tip.find(params[:id])
+ end 
 
   def create
     if logged_in?
