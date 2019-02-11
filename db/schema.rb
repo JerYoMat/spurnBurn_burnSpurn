@@ -10,44 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190208014425) do
+ActiveRecord::Schema.define(version: 2019_02_08_004533) do
 
-  create_table "health_warnings", force: :cascade do |t|
+  create_table "lessons", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tips", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "rating"
     t.string "link"
-    t.integer "product_id"
+    t.integer "lesson_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_health_warnings_on_product_id"
-    t.index ["user_id"], name: "index_health_warnings_on_user_id"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.integer "num_active_users"
-    t.string "logo_path"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.float "score"
-    t.integer "user_id"
-    t.integer "health_warning_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["health_warning_id"], name: "index_ratings_on_health_warning_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.index ["lesson_id"], name: "index_tips_on_lesson_id"
+    t.index ["user_id", "created_at"], name: "index_tips_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_tips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "smoking_status"
+    t.boolean "has_graduated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
