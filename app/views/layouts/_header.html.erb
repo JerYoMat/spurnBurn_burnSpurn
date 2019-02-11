@@ -24,15 +24,17 @@
       <i id="icon_header" class="fa fa-sign-in"></i>
     <% end %>
     </div>
+    <li><<%= link_to "Log out", logout_path, method: :delete %></li>
   </div>
-  <div id="login_target" ></div>
+  <div id="login_target"> </div>
 </nav>
 
 <script>
 $(document).ready(function() {
     $("#login_target").append("<%= escape_javascript render 'sessions/form' %>")
-   $('#icon_header').click(function(evt) {
-      evt.preventDefault();
+   $('#icon_header').click(showLogin)}); // end ready
+
+function showLogin() {
       if ($('#login_target').is(':hidden')) {
         $('#login_target').slideDown(300);
         $(this).addClass('close');
@@ -40,12 +42,7 @@ $(document).ready(function() {
         $('#login_target').slideUp(600);
         $(this).removeClass('close');
       }
-    }); // end cl
-}); // end ready
-
-
-ick
-
+    }; // end cl
 </script>
 
 
