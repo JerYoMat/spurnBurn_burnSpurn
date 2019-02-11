@@ -1,5 +1,6 @@
 
 .navbar{background:#013240;}
+
 .nav-item::after{content:'';display:block;width:0px;height:2px;background:#00b3e6;transition: 0.5s;}
 .nav-item:hover::after{width:100%;}
 .navbar-dark .navbar-nav .active > .nav-link, 
@@ -9,21 +10,32 @@
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover{color:#00b3e6;}
 
-.nav-link{padding:15px 5px;transition:0.2s;}
+.nav-link{transition:0.2s;}
+
+#login_target{
+  position:absolute; 
+  top: 3rem; 
+  right:1rem;
+  display: none;
+}
 
 #icon_header {
     color: white;
     font-size: 1.5em;
-    padding: 5px 5px;
+
+}
+#slash_slash{
+  color: #00b3e6;
+  font-size: 1.7em;
+  margin-right: 3px;
 }
 
 #logo {
     float: left;
     margin-right: 10px;
-    font-size: 1.7em;
+    font-size: 1.5em;
     color: white;
     letter-spacing: -1px;
-    padding-top: 9px;
     font-weight: bold;
     &:hover {
       color: #00b3e6;
