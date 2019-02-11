@@ -19,13 +19,33 @@
     </ul>
     <div class="block-inline my-2 my-lg-0">
     <% if logged_in? %>
-      <i id="icon_header" class="fa fa-user-circle"></i>
+      <i id="account_icon" class="fa fa-user-circle"></i>
     <% else %>
-      <i id="icon_header" class="fa fa-sign-in"> </i>
+      <i id="icon_header" class="fa fa-sign-in"></i>
     <% end %>
     </div>
   </div>
+  <div id="login_target" ></div>
 </nav>
 
+<script>
+$(document).ready(function() {
+    $("#login_target").append("<%= escape_javascript render 'sessions/form' %>")
+   $('#icon_header').click(function(evt) {
+      evt.preventDefault();
+      if ($('#login_target').is(':hidden')) {
+        $('#login_target').slideDown(300);
+        $(this).addClass('close');
+      } else {
+        $('#login_target').slideUp(600);
+        $(this).removeClass('close');
+      }
+    }); // end cl
+}); // end ready
+
+
+ick
+
+</script>
 
 
