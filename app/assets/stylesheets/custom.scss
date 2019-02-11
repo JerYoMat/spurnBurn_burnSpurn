@@ -1,4 +1,4 @@
-
+/* NAVBAR */
 .navbar{background:#013240;}
 
 .nav-item::after{content:'';display:block;width:0px;height:2px;background:#00b3e6;transition: 0.5s;}
@@ -9,20 +9,28 @@
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover{color:#00b3e6;}
-
 .nav-link{transition:0.2s;}
+    /*Navbar menu dropdown*/
+    div.dropdown-menu, div.dropdown-menu a{background:#013240 !important; }
+    @media (min-width: 1028px) {
+      #dropdown_marker:hover > div.dropdown-menu {
+        display: block;
+      }
+    }
 
 #login_target{
   position:absolute; 
   top: 3rem; 
   right:1rem;
   display: none;
+ 
 }
 
-#icon_header {
+#icon_header, #account_icon {
     color: white;
     font-size: 1.5em;
-
+    background-color: #013240;
+    border: none;
 }
 #slash_slash{
   color: #00b3e6;
