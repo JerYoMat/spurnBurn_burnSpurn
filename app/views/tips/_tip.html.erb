@@ -1,5 +1,5 @@
 <li id="tip-<%= tip.id %>"> <!--  opens up the possibility of manipulating individual tips at a future date using JavaScrip -->
-  <%= link_to gravatar_for(tip.user, size: 50), tip.user %>
+
   <span class="user"><%= link_to tip.user.name, tip.user %></span>
   <span class="title"><%= tip.title %></span><br>
   <span class="link"><%= tip.link %></span><br>
