@@ -17,15 +17,22 @@
         <a class="nav-link" href="<%= tips_path%>">Best Tips</a>
       </li>
     </ul>
-    <div class="block-inline my-2 my-lg-0">
+    
     <% if logged_in? %>
-      <i id="account_icon" class="fa fa-user-circle"></i>
+    <div id="dropdown_marker" class="block-inline my-2 my-lg-0 dropdown-toggle btn-group navbar-dark"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button id="account_icon" class="fa fa-user-circle "></button>
+      <div id="test" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item active nav-item" %>
+    
+      </div>
+       </div>
     <% else %>
-      <i id="icon_header" class="fa fa-sign-in"></i>
+    <div class="block-inline my-2 my-lg-0">
+      <button id="icon_header" class="fa fa-sign-in"></button>
     <% end %>
     </div>
-    <li><<%= link_to "Log out", logout_path, method: :delete %></li>
-  </div>
+    
+ 
   <div id="login_target"> </div>
 </nav>
 
@@ -33,41 +40,6 @@
 $(document).ready(function() {
     $("#login_target").append("<%= escape_javascript render 'sessions/form' %>")
    $('#icon_header').click(toggleLoginForm)}); // end ready
-
-function toggleLoginForm() {
-      // toggle login form
-      if ($('#login_target').is(':hidden')) {
-        $('#login_target').slideDown(300);
-        $(this).addClass('close');
-      } else {
-        $('#login_target').slideUp(600);
-        $(this).removeClass('close');
-      }
-      //attach event listener to login form for submit
-      $('#login_form').submit();
-    }; // end cl
-
-function postLogin(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
- 
-      var values = $(this).serialize();
- 
-      var posting = $.post('/login', values);
- 
-      posting.done(function(data, status) {
-        if (status === 201) {
-          $('#login_form').remove()
-        } else {
-
-        }
-        var post = data;
-        console.log(status)
-        console.log(data)
-      });
-    }
-
-
 
 </script>
 
