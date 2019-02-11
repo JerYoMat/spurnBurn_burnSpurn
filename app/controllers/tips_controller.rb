@@ -1,7 +1,5 @@
 require 'pry'
 class TipsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
-  before_action :correct_user,   only: :destroy
 
   #Nested Routes
   def index
@@ -12,14 +10,22 @@ class TipsController < ApplicationController
 
 
   def new 
-    @tip = Tip.new(:lesson_id => params[:id], :user_id => current_user.id) 
-    @lesson = Lesson.find(params[:lesson_id])
-    @options = [[@lesson.name, @lesson.id]]
+    if logged_in?
+      @user = current_user
+      @tip = Tip.new(:user_id => current_user.id) 
+    elsif params[:tip_id]
+      @tip = Tip.new(:lesson_id => params[:id], :user_id => current_user.id) 
+      @lesson = Lesson.find(params[:lesson_id])
+      @options = [[@lesson.name, @lesson.id]]
+    else 
+      redirect_to login_path 
+    end 
   end 
 #End Nested Routes 
 
 
   def create
+    if logged_in?
     @tip = current_user.tips.build(tip_params)
     if @tip.save
       flash[:success] = "Thanks! Your tip has been added."
@@ -29,12 +35,21 @@ class TipsController < ApplicationController
       @feed_items = []  #The empty array  keeps failed submissions from breaking 
       render 'static_pages/home'
     end
+    else
+      redirect_to login_path
+    end  
   end
 
   def destroy
-    @tip.destroy
-    flash[:success] = "Tip deleted"
-    redirect_to request.referrer || root_url #request.referrer just redirects to the previous url for a better user experience. 
+    if logged_in?
+      @tip = Tip.find(params[:id])
+      if @tip.user == current_user
+            @tip.destroy
+            flash[:success] = "Tip deleted"
+      end 
+    end 
+        redirect_to request.referrer || root_url #request.referrer just redirects to the previous url for a better user experience.
+
   end
 
   private
