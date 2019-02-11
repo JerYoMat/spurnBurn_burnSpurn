@@ -14,7 +14,7 @@ gem 'dotenv-rails'
 gem 'pry'
 gem 'font-awesome-rails'
 gem 'bootstrap-social-rails'
-
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'faker'
