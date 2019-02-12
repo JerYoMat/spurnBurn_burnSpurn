@@ -22,7 +22,23 @@ function postLogin(event) {
     } else {
     }
     var post = data;
-    console.log(status)
-    console.log(data)
   })
+  return false
 }
+
+function userTipData(data) {
+
+  var tipHTML='';
+
+  $.each(data,function(tip, tipInfo) {
+    tipHTML+="<div class='card' style='width: 18rem;'>" 
+    tipHTML+="<div class='card-body'>"
+    tipHTML+="<h5 class='card-title'>" +tipInfo.title +" </h5>"
+    tipHTML+="<p class='card-text'>"+tipInfo.description+"</p>"
+    tipHTML+="<a href='#' class='btn btn-primary'>Go somewhere</a>"
+    tipHTML+="</div><div class='card-footer text-muted'>2 days ago</div></div>"   
+  }); // end of each
+  
+  // add finished HTML to page
+  $('#info').html(tipHTML);
+} 
