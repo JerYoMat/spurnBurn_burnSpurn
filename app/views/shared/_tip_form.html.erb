@@ -1,4 +1,5 @@
-<%= form_for(@tip, html: {class: 'form-group'}) do |f| %>
+
+<%= form_for(@tip, html: {class: 'form-group', style: 'display:none'}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
 
